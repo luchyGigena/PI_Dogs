@@ -3,6 +3,7 @@ const apiInfo = require( '../Information/getApiInfo');
 const { Temperament } = require( '../db' )
 const router = Router()
 
+
 router.get( '/', async ( req, res ) => {
 
         const dogsApi = await apiInfo();
