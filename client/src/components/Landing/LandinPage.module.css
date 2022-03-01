@@ -1,0 +1,47 @@
+.landingPage {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  background-image: url("../../landing.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+.btnEnter {
+  border: none;
+  width: 200px;
+  height: 50px;
+  color: #090909;
+  padding: 20px;
+  margin: 20px;
+  font-size: 18px;
+  text-transform: uppercase;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btnEnter:hover {
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  border: 1px solid white;
+}
+
+.title {
+  font-size: 40px;
+  width: 100%;
+  padding-top: 60px;
+  color: #9bdaae;
+}
+
+.name {
+  width: 40%;
+  padding-bottom: 30px;
+  color: #9bdaae;
+}
