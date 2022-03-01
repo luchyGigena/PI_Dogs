@@ -1,8 +1,12 @@
 import React from 'react';
-import Nav from '../Nav/Nav';
+
+
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { getDogs } from '../../actions/actions';
+import { getDogs, getTemperament } from '../../actions/actions';
+
+import Nav from '../Nav/Nav';
+import Card from '../Card/Card';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -13,8 +17,10 @@ export default function Home() {
 
     useEffect(()=>{
         dispatch(getDogs())
-        console.log(getDogs())
-    },[dispatch])
+        dispatch(getTemperament())
+        //console.log(getDogs())
+        //console.log('temperamentos', getTemperament())
+    },[])
 
 
 
@@ -26,8 +32,7 @@ export default function Home() {
   return (
     <div>   
         <Nav />
-
-
+        
     </div>
   )
 }

@@ -1,0 +1,47 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  background-color: #64666b;
+  position: static;
+  width: 100vw;
+  height: 7.6rem;
+}
+.link {
+  text-decoration: none;
+  color: rgb(65, 224, 105);
+}
+
+.btnEnter {
+  border: none;
+  width: 200px;
+  height: 50px;
+  color: #090909;
+  padding: 0.7em 1.7em;
+  margin: 10px;
+  margin-top: 30px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 0.5em;
+  background: rgb(65, 224, 105);
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btnEnter:hover {
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  border: 1px solid white;
+}
+
+.contenedor {
+  width: 80%;
+  display: flex;
+
+  justify-content: space-between;
+}
+.buscador {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 30rem;
+}
