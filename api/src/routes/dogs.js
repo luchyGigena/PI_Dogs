@@ -51,7 +51,7 @@ router.get('/', async(req, res)=>{
        const {name, height, weight,lifeSpan, createdInDb ,temperament } = req.body;
         try{
             if(!name || !height || !weight){
-                return res.status(404).send('Data Required')
+                return res.status(400).send('Data Required');
             }else{
                 const createDog =await Dogs.create({
 
@@ -66,11 +66,12 @@ router.get('/', async(req, res)=>{
             }
         }catch(err){
             console.log(err)
-            res.status(404).send(err)
+            res.status(400).send(err)
         }
-
-       
    })
+
+
+   
 
 
 
