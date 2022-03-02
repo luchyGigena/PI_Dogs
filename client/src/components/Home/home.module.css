@@ -1,0 +1,26 @@
+.cards {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  margin: 100px;
+}
+.containerCards > a {
+  /* HACE REFERENCIA A LAS CARD */
+  text-decoration: none;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+.containerCards {
+  /* background-color: rgb(132, 121, 206); */
+  width: 86%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
