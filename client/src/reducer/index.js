@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_TEMPERAMENTS, FILTER_BY_VALUE } from "../actions/actions";
+import { GET_DOGS, GET_TEMPERAMENTS, FILTER_BY_VALUE, FILTER_CREATED ,FILTER_TEMPERAMENT} from "../actions/actions";
 
 
 const initialState={
@@ -25,7 +25,7 @@ function rootReducer (state = initialState, action){
             }; 
         
         
-            case FILTER_BY_VALUE:
+        case FILTER_BY_VALUE:
                 let info = state.backupDogs;
                 let sortedArr =
                   action.payload === "AZ"
@@ -79,6 +79,28 @@ function rootReducer (state = initialState, action){
                   ...state,
                   dogs: sortedArr,
                 };
+        
+      
+        case FILTER_CREATED:     
+        let cb = state.backupDogs;
+        let createFilter = action.payload === 'CREATED'
+        ? cb.filter((e)=> e.createInDb)
+        : cb.filter((e)=> !e.createInDb) 
+        return{
+          ...state,
+          dogs: action.payload === 'ALL' ? state.backupDogs : createFilter
+        };
+        
+        case FILTER_TEMPERAMENT :
+          let alldogs = state.backupDogs;
+          let temperamentFilter = action.payload === 'ALL' ? alldogs 
+          : alldogs.filter((temp)=> temp.temperament?.includes(action.payload))
+          return{
+            ...state,
+            dogs: temperamentFilter,
+          }
+
+          
         default:
             return state    
 

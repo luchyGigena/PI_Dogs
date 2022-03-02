@@ -11,6 +11,8 @@ import Card from '../Card/Card';
 import Paginado from '../Paginado/Paginado';
 import FilterbyAlphabet from '../FilterbyAlphabet/FilterbyAlphabet';
 import FilterbyWeight from '../FilterbyWeight/FilterbyWeight';
+import FilterbyRaza from '../FilterbyRaza/FilterbyRaza';
+import FiltrobyTemperament from '../FiltrobyTemperament/FiltrobyTemperament';
 
 export default function Home() {
     const dispatch = useDispatch();
@@ -44,9 +46,12 @@ export default function Home() {
   return (
     <div>   
         <Nav />
+
         <Paginado dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado}/>
         <FilterbyAlphabet setCurrentPage={setCurrentPage} setOrder={setOrder}/>
         <FilterbyWeight setCurrentPage={setCurrentPage} setOrder={setOrder}/>
+        <FilterbyRaza setCurrentPage={setCurrentPage} setOrder={setOrder}/>
+        <FiltrobyTemperament />
 
 
         <div className={Styles.cards} >
