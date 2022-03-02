@@ -9,11 +9,14 @@ import { getDogs, getTemperament } from '../../actions/actions';
 import Nav from '../Nav/Nav';
 import Card from '../Card/Card';
 import Paginado from '../Paginado/Paginado';
+import FilterbyAlphabet from '../FilterbyAlphabet/FilterbyAlphabet';
+import FilterbyWeight from '../FilterbyWeight/FilterbyWeight';
 
 export default function Home() {
     const dispatch = useDispatch();
     const allDogs = useSelector((state)=> state.dogs);
     const temperaments = useSelector ((state)=> state.temperament)
+    const [order, setOrder] = useState("")
 
     //para paginado
     const [currentPage, setCurrentPage] = useState(1);
@@ -42,6 +45,8 @@ export default function Home() {
     <div>   
         <Nav />
         <Paginado dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado}/>
+        <FilterbyAlphabet setCurrentPage={setCurrentPage} setOrder={setOrder}/>
+        <FilterbyWeight setCurrentPage={setCurrentPage} setOrder={setOrder}/>
 
 
         <div className={Styles.cards} >
