@@ -11,7 +11,6 @@ export default function FiltrobyTemperament() {
     function handleFilterTemp(e){
         e.preventDefault()
         dispatch(filterbyTemperament(e.target.value))
-
     }
 
 

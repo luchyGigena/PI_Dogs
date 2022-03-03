@@ -3,7 +3,8 @@ export const GET_DOGS = 'GET_DOGS';
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS';
 export const FILTER_BY_VALUE ='FILTER_BY_VALUE';
 export const FILTER_CREATED ='FILTER_CREATED';
-export const FILTER_TEMPERAMENT ='FILTER_TEMPERAMENT'
+export const FILTER_TEMPERAMENT ='FILTER_TEMPERAMENT';
+export const SEARCH_NAME ='SEARCH_NAME';
 
 
 export function getDogs(){
@@ -46,6 +47,18 @@ export function filterbyTemperament(payload){
     return{
         type:FILTER_TEMPERAMENT,
         payload
+    }
+
+}
+export const searchName = (name)=>{
+    return (dispatch)=>{
+        axios.get(`http://localhost:3001/dogs?name=${name}`)
+        .then((data) =>{
+            return dispatch({
+                type: SEARCH_NAME,
+                payload: data.data
+            })
+        })
     }
 
 }

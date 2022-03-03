@@ -8,7 +8,7 @@ const router = Router()
 
 router.get('/', async(req, res)=>{
     const { name } = req.query;
-    const allperritos= await getAllDogs();
+    const allperritos= await getAllDogs(); 
     try {
       if (name) {
         const filtered = allperritos.filter((el) =>

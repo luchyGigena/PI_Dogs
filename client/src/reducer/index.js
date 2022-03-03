@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_TEMPERAMENTS, FILTER_BY_VALUE, FILTER_CREATED ,FILTER_TEMPERAMENT} from "../actions/actions";
+import { GET_DOGS, GET_TEMPERAMENTS, FILTER_BY_VALUE, FILTER_CREATED ,FILTER_TEMPERAMENT , SEARCH_NAME} from "../actions/actions";
 
 
 const initialState={
@@ -99,6 +99,11 @@ function rootReducer (state = initialState, action){
             ...state,
             dogs: temperamentFilter,
           }
+        case SEARCH_NAME: 
+        return{
+          ...state,
+          dogs: action.payload
+        }
 
           
         default:
