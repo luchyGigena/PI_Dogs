@@ -33,7 +33,7 @@ router.get('/', async(req, res)=>{
       try{
          const {id} = req.params;
        
-        if( id ){
+        if(id){
         const allperritos= await getAllDogs();
         const filtered = allperritos.filter((e)=> e.id == id);
         if(filtered.length !== null) return res.status(200).send(filtered);

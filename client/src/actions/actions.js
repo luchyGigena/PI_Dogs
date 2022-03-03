@@ -5,6 +5,8 @@ export const FILTER_BY_VALUE ='FILTER_BY_VALUE';
 export const FILTER_CREATED ='FILTER_CREATED';
 export const FILTER_TEMPERAMENT ='FILTER_TEMPERAMENT';
 export const SEARCH_NAME ='SEARCH_NAME';
+export const DOGS_DETAIL ='DOGS_DETAIL';
+export const CLEAN_Q ='CLEAN_Q'
 
 
 export function getDogs(){
@@ -62,3 +64,20 @@ export const searchName = (name)=>{
     }
 
 }
+
+export function dogsDetail(id) {
+    return async (dispatch)=>{
+    const json = await axios.get(`http://localhost:3001/dogs/${id}`)
+    console.log('que tre json',json)
+    return dispatch({
+                type: DOGS_DETAIL,
+                payload: json.data 
+            })
+    }}
+
+    export function cleanQ(payload) {
+        return {
+          type: CLEAN_Q,
+          payload,
+        }
+    }

@@ -1,12 +1,11 @@
-import { GET_DOGS, GET_TEMPERAMENTS, FILTER_BY_VALUE, FILTER_CREATED ,FILTER_TEMPERAMENT , SEARCH_NAME} from "../actions/actions";
+import { GET_DOGS, GET_TEMPERAMENTS, FILTER_BY_VALUE, FILTER_CREATED ,FILTER_TEMPERAMENT , SEARCH_NAME, DOGS_DETAIL, CLEAN_Q} from "../actions/actions";
 
 
 const initialState={
     dogs : [],
     backupDogs: [],
     temperament: [],
-
-
+    detail: []
 }
 
 function rootReducer (state = initialState, action){
@@ -105,14 +104,20 @@ function rootReducer (state = initialState, action){
           dogs: action.payload
         }
 
+        case DOGS_DETAIL:
+          return{
+            ...state,
+            detail: action.payload
+          };
+        //  case CLEAN_Q:
+         //   return{
+          //    ...state,
+         //     detail:[]
+         //   };
+
           
         default:
             return state    
-
-
-
-
-
 
 
     }
