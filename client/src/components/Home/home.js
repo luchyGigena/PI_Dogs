@@ -64,7 +64,7 @@ export default function Home() {
                   weight={el.weight}
                   img={el.img ? el.img : el.image}
                   temperament={el.temperament}
-                  temperaments={el.temperaments}
+                  //temperaments={el.temperaments}
                   id={el.id}/>
               </Link>
             );

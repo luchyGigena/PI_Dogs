@@ -6,7 +6,7 @@ export const FILTER_CREATED ='FILTER_CREATED';
 export const FILTER_TEMPERAMENT ='FILTER_TEMPERAMENT';
 export const SEARCH_NAME ='SEARCH_NAME';
 export const DOGS_DETAIL ='DOGS_DETAIL';
-export const CLEAN_Q ='CLEAN_Q'
+export const POST_DOG='POST_DOG'
 
 
 export function getDogs(){
@@ -71,13 +71,33 @@ export function dogsDetail(id) {
     console.log('que tre json',json)
     return dispatch({
                 type: DOGS_DETAIL,
-                payload: json.data 
+                payload: json.data
+            
             })
+           
+    } 
+}
+
+//recibe el payload ue es lo que ingresa el us. por el front
+export const postDog =({name, heightMin , heightMax,weightMin,weightMax,years,temperament }) =>{
+    return async ( dispatch) =>{
+        await axios.post('http://localhost:3001/dogs/CreateDog',{
+            name,
+            height: heightMin + ' - ' +heightMax,
+            weight: weightMin + ' -' + weightMax,
+            lifeSpan: years + "years",
+            temperament,
+
+        })
+        dispatch({
+            type: POST_DOG
+        })
     }}
 
-    export function cleanQ(payload) {
-        return {
-          type: CLEAN_Q,
-          payload,
-        }
-    }
+
+   // export function cleanQ(payload) {
+     //   return {
+       //   type: CLEAN_Q,
+         // payload,
+        //}
+    //}

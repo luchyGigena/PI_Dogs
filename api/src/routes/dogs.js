@@ -31,15 +31,14 @@ router.get('/', async(req, res)=>{
    router.get('/:id', async(req, res)=>{
     
       try{
-         const {id} = req.params;
+            const {id} = req.params;
        
-        if(id){
-        const allperritos= await getAllDogs();
-        const filtered = allperritos.filter((e)=> e.id == id);
-        if(filtered.length !== null) return res.status(200).send(filtered);
-        return res.status(404).send('ID NOT FOUND')
+            if(id){
+            const allperritos= await getAllDogs();
+            const filtered = allperritos.filter((e)=> e.id == id);
+            if(filtered.length !== null) return res.status(200).send(filtered);
+            return res.status(404).send('ID NOT FOUND')
         }     
-    
      }catch(err){
          console.log(err)
           res.status(404).send(err)
@@ -47,28 +46,41 @@ router.get('/', async(req, res)=>{
    })
 
 
-   router.post('/createDog', async (req, res)=>{
+   router.post('/CreateDog', async (req, res)=>{
        const {name, height, weight,lifeSpan, createdInDb ,temperament } = req.body;
         try{
             if(!name || !height || !weight){
                 return res.status(400).send('Data Required');
             }else{
-                const createDog =await Dogs.create({
+                const createDog = await Dogs.create({
 
                     name,
                     height,
                     weight,
                     lifeSpan,
-                    createdInDb
+                    
                 })
-                await createDog.addTemperament(temperament);
+                const dbtemp = await Temperament.findAll({
+                  where:{
+                    name: temperament
+                  }
+                })
+                await createDog.addTemperament(dbtemp); //requiere def. de la db 
+                console.log('dbtemp',dbtemp)
                 return res.status(200).send('The dog has been successfully created')
             }
         }catch(err){
-            console.log(err)
-            res.status(400).send(err)
+            
+            res.status(404).json({mje:'no se puede' + err})
         }
    })
+
+  //  router.get('/createDogs', async (req,res)=>{
+  //    try{
+  //      const dogCreated =await Dogs.findAll()
+
+  //    }
+  //  })
 
 
    

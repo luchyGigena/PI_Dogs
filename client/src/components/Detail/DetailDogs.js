@@ -10,14 +10,14 @@ import Nav from '../Nav/Nav';
 
 export default function DetailDogs() {
     const {id} = useParams() //props.match.params.id
-    console.log('trae el id', id)
+    //console.log('trae el id', id)
     const dispatch =useDispatch()
     const detail = useSelector((state)=> state.detail)
 
     useEffect(()=>{
-        //dispatch(cleanQ())
+     
         dispatch(dogsDetail(id))
-        console.log('detalle', id)
+        //console.log('detalle', id)
     },[dispatch,id])
 
 
