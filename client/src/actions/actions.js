@@ -99,5 +99,5 @@ export const postDog =({name, heightMin , heightMax,weightMin,weightMax,years,te
      //   return {
        //   type: CLEAN_Q,
          // payload,
-        //}
+        //}ssssssss
     //}

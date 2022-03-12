@@ -6,8 +6,8 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 40px;
-  margin: 100px;
+  padding: 20px;
+  margin: 50px;
 }
 .containerCards > a {
   /* HACE REFERENCIA A LAS CARD */
@@ -19,8 +19,14 @@
 }
 .containerCards {
   /* background-color: rgb(132, 121, 206); */
-  width: 86%;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.paginate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

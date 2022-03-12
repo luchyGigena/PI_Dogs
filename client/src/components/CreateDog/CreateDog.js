@@ -4,14 +4,14 @@ import Nav from '../Nav/Nav';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemperament, postDog } from '../../actions/actions';
-
+import Styles from './CreateDog.module.css'
 
 
 
 export const CreateDog = () => {
     const temperament = useSelector((state)=> state.temperament)
     const dispatch = useDispatch();
-    const [temp , setTemp] = useState([])
+
     const [errors, setErrors] = useState(false)
     const [success, setSuccess] = useState(false)
     const [values , setValues] = useState({
@@ -61,14 +61,19 @@ export const CreateDog = () => {
             setErrors(true)
             setSuccess(false)
         }
-
-    }     
+    }   
+    
+    function handleDelete(e){
+        setValues({
+            ...values,
+            temperament: values.temperament.filter(temp => temp !== e)
+        })
+    }
 
 
 
     useEffect(()=>{
         dispatch(getTemperament())
-          //console.log('SOY TEMPSTATE DE FORM', getTemperament())
     },[dispatch])
 
 
@@ -76,45 +81,40 @@ export const CreateDog = () => {
 
     <div>
         <Nav />
-        <h1>Create Your Dog</h1>
-        <form onSubmit={handleSubmit}>
+        
+        <form onSubmit={handleSubmit} className={Styles.form}>
+        <h1  className={Styles.h1}>Create Your Dog</h1>
 
         <div>
-          <label>Name: </label>
-          <input type="text" name="name" value={values.name} onChange={ handleChange} autoComplete="off"/>
-           {errors.name && <p className="error">{errors.name}</p>} 
+          <input type="text" name="name"  value={values.name} onChange={ handleChange}  className={Styles.controls} placeholder='Name'/>
+           {errors.name && <p className={Styles.error}>{errors.name}</p>} 
         </div> 
 
         <div>
-          <label>Height min: </label>
-          <input type="number" name="heightMin" value={values.heightMin} onChange={handleChange} autoComplete="off" />
-           {errors.name && <p className="error">{errors.name}</p>} 
+          <input type="number" name="heightMin" min={1} max={50} value={values.heightMin} onChange={handleChange} autoComplete="off" className={Styles.controls} placeholder='Height min:'/>
+           {errors.name && <p className={Styles.error}>{errors.name}</p>} 
         </div>
 
         <div>
-          <label>Height max: </label>
-          <input type="number" name="heightMax" value={values.heightMax}  onChange={handleChange} autoComplete="off"/>
+          <input type="number" name="heightMax" value={values.heightMax} min={1} max={50}  onChange={handleChange} autoComplete="off" className={Styles.controls} placeholder='Height max:'/>
         </div>
 
         <div>
-          <label>Weight min: </label>
-          <input type="number" name="weightMin" value={values.weightMin} onChange={handleChange} autoComplete="off" />
+          <input type="number" name="weightMin" value={values.weightMin} min={1} max={50} onChange={handleChange} autoComplete="off" className={Styles.controls} placeholder='Weight min:' />
         </div>
 
         <div>
-          <label>Weight max: </label>
-          <input type="number" name="weightMax" value={values.weightMax} onChange={handleChange} autoComplete="off"/>
+          <input type="number" name="weightMax" value={values.weightMax} min={1} max={50} onChange={handleChange} autoComplete="off" className={Styles.controls} placeholder='Weight max: '/>
         </div>
 
         <div>
-          <label>Life Span : </label>
-          <input type="number" name="years"value={values.years} onChange={handleChange} autoComplete="off"  />
+          <input type="number" name="years"value={values.years} onChange={handleChange} min={1} max={50} autoComplete="off" className={Styles.controls} placeholder='Life Span :'/>
         </div>
         
          <div>
-          <label>Temperaments: </label >
-          <select onChange={handleSelect} value={values.temperament}  >
-            <option value="all">Todos</option>
+          
+          <select onChange={handleSelect} value={values.temperament}  className={Styles.nameFilter}>
+            <option value="all">Choose Temperament</option>
             {temperament?.map((elem) => (
               <option key={elem.id} value={elem.name}>
                 {elem.name}
@@ -122,31 +122,33 @@ export const CreateDog = () => {
             ))}
           </select>
           {console.log(' eleccion',values.temperament)}
-             <div>
+             <div className={Styles.temperamentSelected}>
                  {
                  values.temperament?.map((elem,i)=>
-                    <div key={i}>
+                    <div key={i} className={Styles.temperament}>
                         <h4>{elem}</h4> 
+                        <button className={Styles.btndelete} onClick={()=>handleDelete(elem)}>x</button>
                     </div>)}
             </div>       
 
         </div> 
 
         <div>
-          <button type="submit">Create!</button>
+          <button type="submit" className={Styles.nameFilter}>Create!</button>
         </div>
+        <Link to='/home'>
+             <button className={Styles.nameFilter}>Back To Home</button>
+        </Link> 
               
         </form>
 
 
 
        {success ? <h2>Created Successfully</h2> : null}
-        {errors ? <h2>Something went wrong!</h2> : null} 
+        {errors ? <h2 className={Styles.error}>Something went wrong!</h2> : null} 
 
 
-        <Link to='/home'>
-             <button>Back To Home</button>
-        </Link> 
+     
     </div>
   )
 }

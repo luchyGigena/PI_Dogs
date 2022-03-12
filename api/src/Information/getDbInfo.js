@@ -9,7 +9,7 @@ const { Dogs } = require("../db");
          include:{
              model: Temperament,
             attributes: ['name'],
-             through:{
+             through:{ //comprobacion (mediante)
                  attributes: [],
              }
             

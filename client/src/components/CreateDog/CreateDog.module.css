@@ -1,0 +1,89 @@
+.form {
+  width: 700px;
+  height: 900px;
+  background: #959b94;
+  padding: 30px;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 4px;
+  font-family: "calibri";
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+}
+
+.h1 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+.controls {
+  width: 50%;
+  background: #8fdf87;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #1f53c5;
+  font-family: "calibri";
+  font-size: 18px;
+  color: white;
+}
+
+.error {
+  font-size: x-large;
+  color: crimson;
+}
+.nameFilter {
+  border: none;
+  color: #090909;
+  padding: 0.7em 1.7em;
+  margin: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  /* box-shadow: 6px 6px 12px #c5c5c5,
+                            -6px -6px 12px #ffffff; */
+  cursor: pointer;
+  width: 50%;
+}
+
+.nameFilter:hover {
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  border: 1px solid white;
+}
+
+.temperamentSelected {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.temperament {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+.btndelete {
+  height: 35px;
+  width: 35px;
+  border: none;
+  color: #090909;
+  padding: 05px;
+  margin: 15px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 0.5em;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+h4 {
+  color: #080808;
+  text-transform: uppercase;
+  font-size: 18px;
+  margin: 10px;
+}

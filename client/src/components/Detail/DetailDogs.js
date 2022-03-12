@@ -1,7 +1,7 @@
 import React,{ useEffect }  from 'react';
-import { dogsDetail, cleanQ } from '../../actions/actions';
+import { dogsDetail} from '../../actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
-
+import Styles from './DetailDogs.module.css';
 import {useParams,  Link } from 'react-router-dom';
 import noimg from './noimg.jpg';
 import Nav from '../Nav/Nav';
@@ -17,7 +17,6 @@ export default function DetailDogs() {
     useEffect(()=>{
      
         dispatch(dogsDetail(id))
-        //console.log('detalle', id)
     },[dispatch,id])
 
 
@@ -26,50 +25,43 @@ export default function DetailDogs() {
     <div>
         <Nav />
        <h1>Dog Detail</h1>
-       <div>
+       <div className={Styles.cuerpoPagina}>
             {detail.length > 0 ? (
                 <div >
-                <div >
+                <div className={Styles.cuerpoTarjeta} >
                   <img
                     src={detail[0].image ? detail[0]?.image : noimg}
                     alt={`dog ${detail[0]?.name}`}
-                    width="400"/>
-                </div>
-                <div>
-                  <h1>{detail[0].name}</h1>
-                  <ul>
-                    <li>
-                       <h4>Height: {detail[0]?.height + " cm"}</h4>
-                    </li>
-                    <li>
-                      <h4>Weight: {detail[0]?.weight + " Kg"}</h4>
-                    </li>
-                    <li>
-                       <h4>Life span: {detail[0]?.lifeSpan}</h4>
-                    </li>
-                    <li>
-                    <h3> Temperaments: </h3>
-                    <h4>
+                   // width="400"
+                    className={Styles.imagen}/>
+                
+                    <p>{detail[0].name}</p>
+                    <p>Height: {detail[0]?.height + " cm"}</p>
+                     <p>Weight: {detail[0]?.weight + " Kg"}</p>
+                    <p>Life span: {detail[0]?.lifeSpan}</p>
+                    
+                    <p> Temperaments: </p>
+                    <p>
                          
                         {detail[0]?.temperament
                           ? detail[0].temperament.map((elem) => elem + ", ")
                           : detail[0]?.temperaments?.map(
                               (elem) => elem.name + ", "
                             )}
-                      </h4>
-                      <Link to='/home'>
-                      <button>Press HERE for go back</button>
-                      </Link>
-                    </li>
-                  </ul>
+                      </p>
+                     
                 </div>
-              </div>
+                </div>
+             
             ) : (
               <p>Loading...</p>
 
             )}
 
        </div>
+       <Link to='/home' >
+                      <button className={Styles.link}>Press HERE for go back</button>
+                      </Link>
 
     </div>
   )
