@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Styles from './home.module.css';
-import Loader from './Loader.gif'
+import Loader from './Loader.gif';
+import notFound from './notFound.jpg';
 
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
@@ -15,9 +16,10 @@ import FilterbyWeight from '../FilterbyWeight/FilterbyWeight';
 import FilterbyRaza from '../FilterbyRaza/FilterbyRaza';
 import FiltrobyTemperament from '../FiltrobyTemperament/FiltrobyTemperament';
 
+
 export default function Home() {
     const dispatch = useDispatch();
-    const allDogs = useSelector((state)=> state.dogs);
+    const allDogs = useSelector((state)=> state.dogs); 
     const [loading, setloading] =useState(true)
     //const temperaments = useSelector ((state)=> state.temperament)
     const [order, setOrder] = useState("")
@@ -52,28 +54,23 @@ export default function Home() {
         <FilterbyAlphabet setCurrentPage={setCurrentPage} setOrder={setOrder}/>
         <FilterbyWeight setCurrentPage={setCurrentPage} setOrder={setOrder}/>
         <FilterbyRaza setCurrentPage={setCurrentPage} setOrder={setOrder}/>
-        <FiltrobyTemperament  />
+        <FiltrobyTemperament setCurrentPage={setCurrentPage} setOrder={setOrder} />
+       
 
         <div className={Styles.cards}>
         {loading ? <img src={Loader} alt="loading"/> :
 
-        <div className={Styles.containerCards}>
-        {currentDogs && currentDogs.map((el) => {
+        (<div className={Styles.containerCards}>
+        {currentDogs.length  ?  currentDogs.map((el) => {//necesito tomar en el map solo los dogs que me devuelve el paginado
             return (
-              <Link to={"/dogs/" + el.id}>
-                <Card
-                  key={el.id}  
-                  name={el.name}
-                  weight={el.weight}
-                  img={el.img ? el.img : el.image}
-                  temperament={el.temperament}
-                  temperaments={el.temperaments}
-                  id={el.id}
-                  />
+              
+              <Link to={"/dogs/" + el.id} key={el.id} >
+                <Card name={el.name} weight={el.weight} img={el.img ? el.img : el.image} temperament={el.temperament} 
+                temperaments={el.temperaments} id={el.id} />
               </Link>
             );
-          })}
-      </div>
+          })  :( <p>perro no encontrado </p>)}
+      </div>  ) 
       }
       </div>
     </div>

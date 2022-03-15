@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { filterByValue } from '../../actions/actions';
+import { orderByName } from '../../actions/actions';
 import Styles from './Filter.module.css';
 
 
@@ -11,7 +11,7 @@ const dispach = useDispatch()
 
     function handleFilter (e){
         e.preventDefault();
-        dispach(filterByValue(e.target.value));
+        dispach(orderByName(e.target.value));
         setCurrentPage(1);
         setOrder(`Ordenado ${e.target.value}`);
 

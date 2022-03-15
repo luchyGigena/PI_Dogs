@@ -8,7 +8,7 @@ import Styles from './CreateDog.module.css'
 
 
 
-export const CreateDog = () => {
+export const CreateDog =()=> {
     const temperament = useSelector((state)=> state.temperament)
     const dispatch = useDispatch();
 

@@ -17,7 +17,7 @@ export default function DetailDogs() {
     useEffect(()=>{
      
         dispatch(dogsDetail(id))
-    },[dispatch,id])
+    },[])
 
 
 
@@ -31,8 +31,7 @@ export default function DetailDogs() {
                 <div className={Styles.cuerpoTarjeta} >
                   <img
                     src={detail[0].image ? detail[0]?.image : noimg}
-                    alt={`dog ${detail[0]?.name}`}
-                   // width="400"
+                    alt={`dog ${detail[0]?.name}`} 
                     className={Styles.imagen}/>
                 
                     <p>{detail[0].name}</p>
@@ -40,14 +39,13 @@ export default function DetailDogs() {
                      <p>Weight: {detail[0]?.weight + " Kg"}</p>
                     <p>Life span: {detail[0]?.lifeSpan}</p>
                     
-                    <p> Temperaments: </p>
+                    <p>Temperaments: </p>
                     <p>
                          
                         {detail[0]?.temperament
                           ? detail[0].temperament.map((elem) => elem + ", ")
                           : detail[0]?.temperaments?.map(
-                              (elem) => elem.name + ", "
-                            )}
+                              (elem) => elem.name + ", ")}
                       </p>
                      
                 </div>
@@ -60,8 +58,8 @@ export default function DetailDogs() {
 
        </div>
        <Link to='/home' >
-                      <button className={Styles.link}>Press HERE for go back</button>
-                      </Link>
+        <button className={Styles.link}>Press HERE for go back</button>
+       </Link>
 
     </div>
   )

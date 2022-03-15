@@ -4,13 +4,15 @@ import { filterbyTemperament } from '../../actions/actions';
 import Styles from './FiltrobyTemperament.module.css'
 
 
-export default function FiltrobyTemperament() {
+export default function FiltrobyTemperament({setCurrentPage,setOrder}) {
     const dispatch = useDispatch()
     const temperaments = useSelector ((state)=> state.temperament);
 
     function handleFilterTemp(e){
         e.preventDefault()
         dispatch(filterbyTemperament(e.target.value))
+        setCurrentPage(1);
+        setOrder(`ordenado ${e.target.value}`)
     }
 
 

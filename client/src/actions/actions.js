@@ -6,13 +6,16 @@ export const FILTER_CREATED ='FILTER_CREATED';
 export const FILTER_TEMPERAMENT ='FILTER_TEMPERAMENT';
 export const SEARCH_NAME ='SEARCH_NAME';
 export const DOGS_DETAIL ='DOGS_DETAIL';
-export const POST_DOG='POST_DOG'
+export const POST_DOG='POST_DOG';
+export const ORDER_NAME= 'ORDER_NAME';
+
+
 
 
 export function getDogs(){
     return async function (dispach){
         let res = await axios.get("http://localhost:3001/dogs");
-        console.log('res', res)
+        //console.log('res', res)
         return dispach({
             type: GET_DOGS,
             payload: res.data, //LO QUE ME VA A CARGAR
@@ -39,6 +42,14 @@ export function filterByValue(payload){
     }
 }
 
+export function orderByName(payload){
+    return{
+        type: ORDER_NAME,
+        payload
+    }
+}
+
+
 export function filterCreated(payload){
     return{
         type: FILTER_CREATED,
@@ -52,18 +63,25 @@ export function filterbyTemperament(payload){
     }
 
 }
-export const searchName = (name)=>{
-    return (dispatch)=>{
-        axios.get(`http://localhost:3001/dogs?name=${name}`)
-        .then((data) =>{
-            return dispatch({
-                type: SEARCH_NAME,
-                payload: data.data
-            })
-        })
-    }
 
-}
+
+export function searchName (name){ //pasar a async
+    return async (dispatch)=>{
+   try{
+    const json = await axios.get(`http://localhost:3001/dogs?name=${name}`)
+    console.log('searchname json', json)
+       return dispatch ({
+           type: SEARCH_NAME,
+           payload: json.data
+       }, console.log('entro al dispach', dispatch) )
+   }catch(err){
+    return dispatch ({
+        type: SEARCH_NAME,
+        payload: []
+    }, console.log('entro al catch', dispatch) )
+   }
+
+}}
 
 export function dogsDetail(id) {
     return async (dispatch)=>{
@@ -95,9 +113,4 @@ export const postDog =({name, heightMin , heightMax,weightMin,weightMax,years,te
     }}
 
 
-   // export function cleanQ(payload) {
-     //   return {
-       //   type: CLEAN_Q,
-         // payload,
-        //}ssssssss
-    //}
+  
