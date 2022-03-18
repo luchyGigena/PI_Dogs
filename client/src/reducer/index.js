@@ -1,12 +1,13 @@
 import { GET_DOGS, GET_TEMPERAMENTS, FILTER_BY_VALUE, FILTER_CREATED ,FILTER_TEMPERAMENT , SEARCH_NAME, DOGS_DETAIL, POST_DOG, ORDER_NAME} from "../actions/actions";
 
 
+
 const initialState={
     dogs : [],
     backupDogs: [],
     temperament: [],
-
-    detail: []
+    detail: [],
+   
 }
 
 function rootReducer (state = initialState, action){
@@ -22,7 +23,8 @@ function rootReducer (state = initialState, action){
             return{
                 ...state,
                 temperament: action.payload
-            }; 
+            };
+      
         
         case ORDER_NAME:
          let sortedArr = action.payload === "AZ" ? state.dogs.sort(function (a, b) {
@@ -74,7 +76,7 @@ function rootReducer (state = initialState, action){
                   ...state,
                   dogs: sortedArr2,
                 };
-        
+
       
         case FILTER_CREATED:     
         let createFilter = action.payload === 'CREATED'
@@ -86,7 +88,7 @@ function rootReducer (state = initialState, action){
         };
         
         case FILTER_TEMPERAMENT :
-          const allDogs = state.backupDogs
+          let  allDogs = state.backupDogs
           let temperamentFilter =  action.payload === 'ALL' ? allDogs  : allDogs.filter((temp)=> temp.temperament?.includes(action.payload))
           return{
             ...state,

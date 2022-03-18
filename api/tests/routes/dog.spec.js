@@ -2,39 +2,39 @@
 const { expect } = require('chai');
 const session = require('supertest-session');
 const app = require('../../src/app.js');
-const { Dog, conn } = require('../../src/db.js');
-const { dogs, temperaments } = require("../arrays")
+const { Dogs, conn } = require('../../src/db.js');
 
 const agent = session(app);
 const dog = {
+  id: 'bcaf121f-4dab-4129-90c5-50ae9512eb7f', 
   name: 'Pug',
+  height_min: '25',
+  height_max: '30',
+  weight_min: '8',
+  weight_max: '12',
+  life_span: '6',
+  temperament: "Curious",
+  image: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Mops-falk-vom-maegdebrunnen-internationaler-champion-fci.jpg' 
 };
 
-escribe("Dogs routes", () => {
-  before(() =>
-    conn.authenticate().catch((err) => {
-      console.error("Unable to connect to the database:", err);
-    })
-  );
-  beforeEach(() => Dog.sync({ force: true }).then(() => Dog.bulkCreate(dogs)));
-  describe("GET /dogs", () => {
-    it("should get 200", () => agent.get("/dogs").expect(200));
-  });
-
-  describe("POST /dogs", () => {
-    it("Create dog", () => {
-      agent.post("/dogs").send({
-        name: {},
-
-        height: dogs[0].height,
-
-        weight: dogs[0].weight,
-
-        lifeSpan: dogs[0].lifeSpan,
-
-        temperament: temperaments[0]
-      })
-      .expect(200)
-    });
+describe('Dogs routes', () => {
+  before(() => conn.authenticate()
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+  }));
+  beforeEach(() => Dogs.sync({ force: true })
+    .then(() => Dogs.create(dog)));
+  describe('GET /api/dogs', () => {
+    it('should get 200', () =>
+      agent.get('/dogs').expect(200)
+    );
   });
 });
+
+describe("Obtiene un Dog por id", () => {
+  describe("GET /dogs/:id", () => {
+    it("Se espera una respuesta 200 si se pasa un id", () =>
+      agent.get("/dogs/1").expect(200));
+  });
+  })
+

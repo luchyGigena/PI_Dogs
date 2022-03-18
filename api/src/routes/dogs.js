@@ -2,8 +2,9 @@ const Router = require('express');
 const { Dogs , Temperament } = require('../db');
 const getAllDogs= require('../InformatioN/getAllDogs');
 const router = Router();
-const { Op } = require('sequelize');
+
 const getDbInfo = require('../InformatioN/getDbInfo');
+
 
 
 
@@ -54,7 +55,7 @@ const getDbInfo = require('../InformatioN/getDbInfo');
   //     res.status(200).send(allperritos)
   //   }
   // })
-
+  
 
 
 
@@ -104,18 +105,7 @@ const getDbInfo = require('../InformatioN/getDbInfo');
         }
    })
 
-  router.delete('/:id', async(req, res)=>{
-    const {id} = req.params
-     const perroDeleted = await Dogs.destroy({
-       where:{
-         id: id
-       }
-     })
-     perroDeleted.length ?
-       res.status(200).json('borrado: true'):
-       res.status(204).json('no se puede eliminar perrito')
 
-  })
 
 
 

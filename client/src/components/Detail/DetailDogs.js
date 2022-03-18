@@ -10,12 +10,11 @@ import Nav from '../Nav/Nav';
 
 export default function DetailDogs() {
     const {id} = useParams() //props.match.params.id
-    //console.log('trae el id', id)
+    //console.log(' q trae el id', id)
     const dispatch =useDispatch()
     const detail = useSelector((state)=> state.detail)
 
     useEffect(()=>{
-     
         dispatch(dogsDetail(id))
     },[])
 
@@ -37,7 +36,7 @@ export default function DetailDogs() {
                     <p>{detail[0].name}</p>
                     <p>Height: {detail[0]?.height + " cm"}</p>
                      <p>Weight: {detail[0]?.weight + " Kg"}</p>
-                    <p>Life span: {detail[0]?.lifeSpan}</p>
+                    <p>Life span: {detail[0]?.lifeSpan }</p>
                     
                     <p>Temperaments: </p>
                     <p>

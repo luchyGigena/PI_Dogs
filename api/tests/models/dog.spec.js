@@ -1,16 +1,13 @@
 const { Dog, conn } = require('../../src/db.js');
 const { expect } = require('chai');
-const { dogs } = require('./base/array')
 
 describe('Dog model', () => {
   before(() => conn.authenticate()
     .catch((err) => {
       console.error('Unable to connect to the database:', err);
     }));
-
-
   describe('Validators', () => {
-    beforeEach(() => dogs.sync({ force: true }));
+    beforeEach(() => Dog.sync({ force: true }));
     describe('name', () => {
       it('should throw an error if name is null', (done) => {
         Dog.create({})
@@ -21,34 +18,47 @@ describe('Dog model', () => {
         Dog.create({ name: 'Pug' });
       });
     });
-
-    describe(' create dogs ', () => {
-      beforeEach(()=> {
-        Dog.bulkCreate(dogs)
-      })
-
-      describe('search dog', () => {
-        
-        it('length db', done => {
-          Dog.findAll()
-          .then(r => expect(r.length).to.be(2))    
-          .catch(() => done())
-        });
-
-        it('name Dog', done => {
-          Dog.findAll()
-          .then(r => expect(r[0].name).to.be.true('HolaHola'))
-          .catch(() => done())
-        });
-        
-        it('fake name Dog', done => {
-          Dog.findAll()
-          .then(r => expect(r[1].name).to.be.false('HolaHola'))
-          .catch(() => done())
-        });
-      })
-    })
-
+// Mi codigo
+describe("weight_min", () => {
+  it("should throw an error if weight is null", (done) => {
+    Dog.create({})
+      .then(() => done(new Error("notNull Violation: dog.weight cannot be null")))
+      .catch(() => done());
+  });
+  it('should work when its a valid weight value', () => {
+    Dog.create({ weight: '8' });
+  });
+ });
+ describe("weight_max", () => {
+  it("should throw an error if weight is null", (done) => {
+    Dog.create({})
+      .then(() => done(new Error("notNull Violation: dog.weight cannot be null")))
+      .catch(() => done());
+  });
+  it('should work when its a valid weight value', () => {
+    Dog.create({ weight: '8' });
+  });
+ });
+ describe("height_min", () => {
+  it("should throw an error if height is null", (done) => {
+    Dog.create({})
+      .then(() => done(new Error("notNull Violation: dog.height cannot be null")))
+      .catch(() => done());
+  });
+  it('should work when its a valid height value', () => {
+    Dog.create({ height: '25' });
+  });
+ });
+ describe("height_max", () => {
+  it("should throw an error if height is null", (done) => {
+    Dog.create({})
+      .then(() => done(new Error("notNull Violation: dog.height cannot be null")))
+      .catch(() => done());
+  });
+  it('should work when its a valid height value', () => {
+    Dog.create({ height: '25' });
+  });
+ });
 
   });
 });

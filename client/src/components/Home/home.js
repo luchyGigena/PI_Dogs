@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Styles from './home.module.css';
 import Loader from './Loader.gif';
-import notFound from './notFound.jpg';
+
 
 import { useState, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
@@ -15,6 +15,7 @@ import FilterbyAlphabet from '../FilterbyAlphabet/FilterbyAlphabet';
 import FilterbyWeight from '../FilterbyWeight/FilterbyWeight';
 import FilterbyRaza from '../FilterbyRaza/FilterbyRaza';
 import FiltrobyTemperament from '../FiltrobyTemperament/FiltrobyTemperament';
+
 
 
 export default function Home() {
@@ -69,7 +70,7 @@ export default function Home() {
                 temperaments={el.temperaments} id={el.id} />
               </Link>
             );
-          })  :( <p>perro no encontrado </p>)}
+          })  :(<p>perro no encontrado </p>)}
       </div>  ) 
       }
       </div>

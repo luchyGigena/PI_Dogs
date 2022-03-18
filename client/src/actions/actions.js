@@ -35,6 +35,8 @@ export function getTemperament(){
     }
 }
 
+
+
 export function filterByValue(payload){
     return{
         type: FILTER_BY_VALUE,
@@ -48,6 +50,7 @@ export function orderByName(payload){
         payload
     }
 }
+
 
 
 export function filterCreated(payload){
@@ -69,11 +72,11 @@ export function searchName (name){ //pasar a async
     return async (dispatch)=>{
    try{
     const json = await axios.get(`http://localhost:3001/dogs?name=${name}`)
-    console.log('searchname json', json)
+   // console.log('searchname json', json)
        return dispatch ({
            type: SEARCH_NAME,
            payload: json.data
-       }, console.log('entro al dispach', dispatch) )
+       } )
    }catch(err){
     return dispatch ({
         type: SEARCH_NAME,
@@ -86,31 +89,33 @@ export function searchName (name){ //pasar a async
 export function dogsDetail(id) {
     return async (dispatch)=>{
     const json = await axios.get(`http://localhost:3001/dogs/${id}`)
-    console.log('que tre json',json)
     return dispatch({
                 type: DOGS_DETAIL,
                 payload: json.data
-            
-            })
-           
+            })  
     } 
 }
 
 //recibe el payload ue es lo que ingresa el us. por el front
 export const postDog =({name, heightMin , heightMax,weightMin,weightMax,years,temperament }) =>{
     return async ( dispatch) =>{
-        await axios.post('http://localhost:3001/dogs/CreateDog',{
-            name,
-            height: heightMin + ' - ' +heightMax,
-            weight: weightMin + ' -' + weightMax,
-            lifeSpan: years + "years",
-            temperament,
-
-        })
-        dispatch({
-            type: POST_DOG
-        })
+      
+            await axios.post('http://localhost:3001/dogs/CreateDog',{
+                name,
+                height: heightMin + ' - ' +heightMax,
+                weight: weightMin + ' -' + weightMax,
+                lifeSpan: years + " years",
+                temperament,
+    
+            })
+            dispatch({
+                type: POST_DOG
+            })
+      
+     
     }}
+
+
 
 
   

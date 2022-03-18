@@ -1,6 +1,7 @@
 const Router = require( 'express');
 const apiInfo = require( '../Information/getApiInfo');
-const { Temperament } = require( '../db' )
+const { Temperament , Dogs} = require( '../db' );
+const { route } = require('./dogs');
 const router = Router()
 
 
@@ -24,6 +25,11 @@ router.get( '/', async ( req, res ) => {
         //console.log(allTemperaments)
         return res.status( 200 ).send( allTemperaments )
 })
+
+
+
+
+
 
 
 
